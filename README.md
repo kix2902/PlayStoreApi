@@ -51,7 +51,15 @@ Every search method will return a json string formatted like the following:
 }
 ```
 
-And the structure of every type data are the following:
+If the search doesn't return any result or the data type isn't available in the country configured the output will look like this:
+
+```json
+{
+  "msg": "No results found"
+}
+```
+
+The structure of every type data are the following:
 
 ### Album
 
@@ -185,3 +193,8 @@ And the structure of every type data are the following:
   "price"
 }
 ```
+
+## TO-DO
+- Comment the API
+- Add functionality to retrieve only an object based on their IDs
+- Add methods to retrieve "Top charts" and "New arrivals" listings of every data type
