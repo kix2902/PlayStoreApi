@@ -51,14 +51,6 @@ Every search method will return a json string formatted like the following:
 }
 ```
 
-If the search doesn't return any result or the data type isn't available in the country configured the output will look like this:
-
-```json
-{
-  "msg": "No results found"
-}
-```
-
 The structure of every type data are the following:
 
 ### Album
@@ -191,6 +183,15 @@ The structure of every type data are the following:
   "title"
   "category"
   "price"
+}
+```
+
+#### Empty output
+If the search doesn't return any result or the data type isn't available in the country configured the output will look like this:
+
+```json
+{
+  "msg": "No results found"
 }
 ```
 
