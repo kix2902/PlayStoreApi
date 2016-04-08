@@ -196,6 +196,5 @@ If the search doesn't return any result or the data type isn't available in the 
 ```
 
 ## TO-DO
-- Comment the API
 - Add functionality to retrieve only an object based on their IDs
 - Add methods to retrieve "Top charts" and "New arrivals" listings of every data type
