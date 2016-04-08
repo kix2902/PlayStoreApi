@@ -78,7 +78,7 @@ class PlayStoreApi
         $this->language = $newLanguage;
     }
 
-    private function formatUrl($type, $query, $page = '')
+    private function formatUrlSearch($type, $query, $page = '')
     {
         if (!isset($query)) {
             throw new Exception('A query term is mandatory.');
@@ -97,7 +97,7 @@ class PlayStoreApi
 
     public function searchAlbums($query, $page = '')
     {
-        $url = $this->formatUrl(2, $query, $page);
+        $url = $this->formatUrlSearch(2, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -163,7 +163,7 @@ class PlayStoreApi
 
     public function searchApps($query, $page = '')
     {
-        $url = $this->formatUrl(1, $query, $page);
+        $url = $this->formatUrlSearch(1, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -224,7 +224,7 @@ class PlayStoreApi
 
     public function searchArtists($query, $page = '')
     {
-        $url = $this->formatUrl(3, $query, $page);
+        $url = $this->formatUrlSearch(3, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -271,7 +271,7 @@ class PlayStoreApi
 
     public function searchBooks($query, $page = '')
     {
-        $url = $this->formatUrl(5, $query, $page);
+        $url = $this->formatUrlSearch(5, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -332,7 +332,7 @@ class PlayStoreApi
 
     public function searchDevices($query, $page = '')
     {
-        $url = $this->formatUrl(14, $query, $page);
+        $url = $this->formatUrlSearch(14, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -386,7 +386,7 @@ class PlayStoreApi
 
     public function searchMagazines($query, $page = '')
     {
-        $url = $this->formatUrl(16, $query, $page);
+        $url = $this->formatUrlSearch(16, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -443,7 +443,7 @@ class PlayStoreApi
 
     public function searchMovies($query, $page = '')
     {
-        $url = $this->formatUrl(6, $query, $page);
+        $url = $this->formatUrlSearch(6, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -509,7 +509,7 @@ class PlayStoreApi
 
     public function searchNewspapers($query, $page = '')
     {
-        $url = $this->formatUrl(24, $query, $page);
+        $url = $this->formatUrlSearch(24, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -566,7 +566,7 @@ class PlayStoreApi
 
     public function searchSongs($query, $page = '')
     {
-        $url = $this->formatUrl(4, $query, $page);
+        $url = $this->formatUrlSearch(4, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -640,7 +640,7 @@ class PlayStoreApi
 
     public function searchTvEpisodes($query, $page = '')
     {
-        $url = $this->formatUrl(20, $query, $page);
+        $url = $this->formatUrlSearch(20, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
@@ -721,7 +721,7 @@ class PlayStoreApi
 
     public function searchTvShows($query, $page = '')
     {
-        $url = $this->formatUrl(18, $query, $page);
+        $url = $this->formatUrlSearch(18, $query, $page);
         $html = $this->curlExec($url);
         $nextPage = $this->extractPageToken($html);
 
