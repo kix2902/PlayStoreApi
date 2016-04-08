@@ -14,6 +14,17 @@ include_once 'data/song.php';
 include_once 'data/tvepisode.php';
 include_once 'data/tvshow.php';
 
+/**
+ * Searchs and gets data form the Google Play Store.
+ *
+ * @author RedInput
+ *
+ * @link https://github.com/RedInput/PlayStoreApi
+ *
+ * @license Apache 2.0
+ *
+ * @version 1.0.1
+ */
 class PlayStoreApi
 {
     private $GOOGLE_PLAY_URL = 'https://play.google.com/store/search';
@@ -60,6 +71,11 @@ class PlayStoreApi
         return $pagetoken;
     }
 
+    /**
+     * Sets the country code to use when querying the Google Play Store.
+     *
+     * @param string $newCountry 2-letter ISO code of the country
+     */
     public function setCountryCode($newCountry = 'US')
     {
         $newCountry = strtoupper($newCountry);
@@ -69,6 +85,11 @@ class PlayStoreApi
         $this->country = $newCountry;
     }
 
+    /**
+     * Sets the language code to use when querying the Google Play Store.
+     *
+     * @param string $newLanguage 2-letter ISO code of the language
+     */
     public function setLanguageCode($newLanguage = 'en')
     {
         $newLanguage = strtolower($newLanguage);
@@ -95,6 +116,14 @@ class PlayStoreApi
         return $this->GOOGLE_PLAY_URL.'?docType='.$type.'&q='.$query.$pagetoken.'&gl='.$this->country.'&hl='.$this->language;
     }
 
+    /**
+     * Performs a search of albums in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Album's item
+     */
     public function searchAlbums($query, $page = '')
     {
         $url = $this->formatUrlSearch(2, $query, $page);
@@ -161,6 +190,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+    /**
+     * Performs a search of apps in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of App's item
+     */
     public function searchApps($query, $page = '')
     {
         $url = $this->formatUrlSearch(1, $query, $page);
@@ -222,6 +259,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+    /**
+     * Performs a search of artists in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Artist's item
+     */
     public function searchArtists($query, $page = '')
     {
         $url = $this->formatUrlSearch(3, $query, $page);
@@ -269,6 +314,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+    /**
+     * Performs a search of books in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Book's item
+     */
     public function searchBooks($query, $page = '')
     {
         $url = $this->formatUrlSearch(5, $query, $page);
@@ -330,6 +383,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+    /**
+     * Performs a search of devices in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Device's item
+     */
     public function searchDevices($query, $page = '')
     {
         $url = $this->formatUrlSearch(14, $query, $page);
@@ -384,6 +445,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+    /**
+     * Performs a search of magazines in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Magazine's item
+     */
     public function searchMagazines($query, $page = '')
     {
         $url = $this->formatUrlSearch(16, $query, $page);
@@ -441,6 +510,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+    /**
+     * Performs a search of movies in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Movie's item
+     */
     public function searchMovies($query, $page = '')
     {
         $url = $this->formatUrlSearch(6, $query, $page);
@@ -507,6 +584,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+    /**
+     * Performs a search of newspapaers in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Newspapaer's item
+     */
     public function searchNewspapers($query, $page = '')
     {
         $url = $this->formatUrlSearch(24, $query, $page);
@@ -564,6 +649,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+        /**
+         * Performs a search of songs in the Google Play Store.
+         *
+         * @param string $query The string to query
+         * @param string $page  The page token of the page to load
+         *
+         * @return A json object with the page token of the next page and an array of Song's item
+         */
     public function searchSongs($query, $page = '')
     {
         $url = $this->formatUrlSearch(4, $query, $page);
@@ -638,6 +731,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+        /**
+         * Performs a search of TV episodes in the Google Play Store.
+         *
+         * @param string $query The string to query
+         * @param string $page  The page token of the page to load
+         *
+         * @return A json object with the page token of the next page and an array of TvEpisode's item
+         */
     public function searchTvEpisodes($query, $page = '')
     {
         $url = $this->formatUrlSearch(20, $query, $page);
@@ -719,6 +820,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
+        /**
+         * Performs a search of TV shows in the Google Play Store.
+         *
+         * @param string $query The string to query
+         * @param string $page  The page token of the page to load
+         *
+         * @return A json object with the page token of the next page and an array of TvShow's item
+         */
     public function searchTvShows($query, $page = '')
     {
         $url = $this->formatUrlSearch(18, $query, $page);
