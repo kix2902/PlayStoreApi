@@ -649,14 +649,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
-        /**
-         * Performs a search of songs in the Google Play Store.
-         *
-         * @param string $query The string to query
-         * @param string $page  The page token of the page to load
-         *
-         * @return A json object with the page token of the next page and an array of Song's item
-         */
+    /**
+     * Performs a search of songs in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of Song's item
+     */
     public function searchSongs($query, $page = '')
     {
         $url = $this->formatUrlSearch(4, $query, $page);
@@ -731,14 +731,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
-        /**
-         * Performs a search of TV episodes in the Google Play Store.
-         *
-         * @param string $query The string to query
-         * @param string $page  The page token of the page to load
-         *
-         * @return A json object with the page token of the next page and an array of TvEpisode's item
-         */
+    /**
+     * Performs a search of TV episodes in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of TvEpisode's item
+     */
     public function searchTvEpisodes($query, $page = '')
     {
         $url = $this->formatUrlSearch(20, $query, $page);
@@ -820,14 +820,14 @@ class PlayStoreApi
         return json_encode($arr);
     }
 
-        /**
-         * Performs a search of TV shows in the Google Play Store.
-         *
-         * @param string $query The string to query
-         * @param string $page  The page token of the page to load
-         *
-         * @return A json object with the page token of the next page and an array of TvShow's item
-         */
+    /**
+     * Performs a search of TV shows in the Google Play Store.
+     *
+     * @param string $query The string to query
+     * @param string $page  The page token of the page to load
+     *
+     * @return A json object with the page token of the next page and an array of TvShow's item
+     */
     public function searchTvShows($query, $page = '')
     {
         $url = $this->formatUrlSearch(18, $query, $page);
