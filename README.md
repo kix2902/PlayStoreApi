@@ -63,6 +63,7 @@ The structure of every type data are the following:
   "artist"
   "artist_id"
   "price"
+  "url"
 }
 ```
 
@@ -75,6 +76,7 @@ The structure of every type data are the following:
   "name"
   "developer"
   "price"
+  "url"
 }
 ```
 
@@ -85,6 +87,7 @@ The structure of every type data are the following:
   "artist_id"
   "image"
   "name"
+  "url"
 }
 ```
 
@@ -97,6 +100,7 @@ The structure of every type data are the following:
   "title"
   "author"
   "price"
+  "url"
 }
 ```
 
@@ -108,6 +112,7 @@ The structure of every type data are the following:
   "image"
   "title"
   "price"
+  "url"
 }
 ```
 
@@ -119,6 +124,7 @@ The structure of every type data are the following:
   "image"
   "title"
   "price"
+  "url"
 }
 ```
 
@@ -131,6 +137,7 @@ The structure of every type data are the following:
   "title"
   "category"
   "price"
+  "url"
 }
 ```
 
@@ -142,6 +149,7 @@ The structure of every type data are the following:
   "image"
   "title"
   "price"
+  "url"
 }
 ```
 
@@ -156,6 +164,7 @@ The structure of every type data are the following:
   "artist"
   "artist_id"
   "price"
+  "url"
 }
 ```
 
@@ -171,6 +180,7 @@ The structure of every type data are the following:
   "show_title"
   "date"
   "price"
+  "url"
 }
 ```
 
@@ -183,6 +193,7 @@ The structure of every type data are the following:
   "title"
   "category"
   "price"
+  "url"
 }
 ```
 
