@@ -5,6 +5,7 @@ class App implements \JsonSerializable {
     private $name;
     private $developer;
     private $price;
+    private $url;
 
     public function getPackage(){
         return $this->package;
@@ -14,7 +15,7 @@ class App implements \JsonSerializable {
         $package = trim($package);
         $this->package = $package;
     }
-    
+
     public function getIcon(){
         return $this->icon;
     }
@@ -56,7 +57,16 @@ class App implements \JsonSerializable {
         }
         $this->price = $price;
     }
-    
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
+    }
+
     public function JsonSerialize(){
         return get_object_vars($this);
     }

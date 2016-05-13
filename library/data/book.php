@@ -5,7 +5,8 @@ class Book implements \JsonSerializable {
     private $title;
     private $author;
     private $price;
-    
+    private $url;
+
     public function getBookId(){
         return $this->book_id;
     }
@@ -14,7 +15,7 @@ class Book implements \JsonSerializable {
         $book_id = trim($book_id);
         $this->book_id = $book_id;
     }
-    
+
     public function getImage(){
         return $this->image;
     }
@@ -56,7 +57,16 @@ class Book implements \JsonSerializable {
         }
         $this->price = $price;
     }
-    
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
+    }
+
     public function JsonSerialize(){
         return get_object_vars($this);
     }

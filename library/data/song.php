@@ -7,7 +7,8 @@ class Song implements \JsonSerializable {
     private $artist;
     private $artist_id;
     private $price;
-    
+    private $url;
+
     public function getAlbumId(){
         return $this->album_id;
     }
@@ -16,7 +17,7 @@ class Song implements \JsonSerializable {
         $album_id = trim($album_id);
         $this->album_id = $album_id;
     }
-    
+
     public function getSongId(){
         return $this->song_id;
     }
@@ -76,7 +77,16 @@ class Song implements \JsonSerializable {
         }
         $this->price = $price;
     }
-    
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
+    }
+
     public function JsonSerialize(){
         return get_object_vars($this);
     }

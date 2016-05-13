@@ -5,7 +5,8 @@ class Movie implements \JsonSerializable {
     private $title;
     private $category;
     private $price;
-    
+    private $url;
+
     public function getMovieId(){
         return $this->movie_id;
     }
@@ -14,7 +15,7 @@ class Movie implements \JsonSerializable {
         $movie_id = trim($movie_id);
         $this->movie_id = $movie_id;
     }
-    
+
     public function getImage(){
         return $this->image;
     }
@@ -56,7 +57,16 @@ class Movie implements \JsonSerializable {
         }
         $this->price = $price;
     }
-    
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
+    }
+
     public function JsonSerialize(){
         return get_object_vars($this);
     }

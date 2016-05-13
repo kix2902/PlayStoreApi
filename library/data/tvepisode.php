@@ -10,6 +10,7 @@ class Episode implements \JsonSerializable
     private $show_title;
     private $date;
     private $price;
+    private $url;
 
     public function getEpisodeId()
     {
@@ -103,6 +104,15 @@ class Episode implements \JsonSerializable
             $price = null;
         }
         $this->price = $price;
+    }
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
     }
 
     public function JsonSerialize()

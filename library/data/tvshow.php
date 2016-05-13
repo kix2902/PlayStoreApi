@@ -5,7 +5,8 @@ class Show implements \JsonSerializable {
     private $title;
     private $category;
     private $price;
-    
+    private $url;
+
     public function getShowId(){
         return $this->show_id;
     }
@@ -14,7 +15,7 @@ class Show implements \JsonSerializable {
         $show_id = trim($show_id);
         $this->show_id = $show_id;
     }
-    
+
     public function getImage(){
         return $this->image;
     }
@@ -44,7 +45,7 @@ class Show implements \JsonSerializable {
         $category = trim($category);
         $this->category = $category;
     }
-    
+
     public function getPrice(){
         return $this->price;
     }
@@ -56,7 +57,16 @@ class Show implements \JsonSerializable {
         }
         $this->price = $price;
     }
-    
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
+    }
+
     public function JsonSerialize(){
         return get_object_vars($this);
     }

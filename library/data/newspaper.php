@@ -4,6 +4,7 @@ class Newspaper implements \JsonSerializable {
     private $image;
     private $title;
     private $price;
+    private $url;
 
     public function getNewspaperId(){
         return $this->newspaper_id;
@@ -45,6 +46,15 @@ class Newspaper implements \JsonSerializable {
             $price = null;
         }
         $this->price = $price;
+    }
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
     }
 
     public function JsonSerialize(){

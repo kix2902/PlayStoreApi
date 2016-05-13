@@ -4,7 +4,8 @@ class Magazine implements \JsonSerializable {
     private $image;
     private $title;
     private $price;
-    
+    private $url;
+
     public function getMagazineId(){
         return $this->magazine_id;
     }
@@ -46,7 +47,16 @@ class Magazine implements \JsonSerializable {
         }
         $this->price = $price;
     }
-    
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
+    }
+
     public function JsonSerialize(){
         return get_object_vars($this);
     }

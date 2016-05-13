@@ -3,6 +3,7 @@ class Artist implements \JsonSerializable {
     private $artist_id;
     private $image;
     private $name;
+    private $url;
 
     public function getArtistId(){
         return $this->artist_id;
@@ -33,7 +34,16 @@ class Artist implements \JsonSerializable {
         }
         $this->image = $image;
     }
-    
+
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setUrl($url){
+        $url = trim($url);
+        $this->url = $url;
+    }
+
     public function JsonSerialize(){
         return get_object_vars($this);
     }
