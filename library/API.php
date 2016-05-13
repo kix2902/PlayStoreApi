@@ -37,8 +37,8 @@ class PlayStoreApi
 
     public function __construct()
     {
-        $country = 'US';
-        $language = 'es';
+        $this->country = 'US';
+        $this->language = 'en';
     }
 
     private function curlExec($url)
