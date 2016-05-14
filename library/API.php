@@ -161,7 +161,7 @@ class PlayStoreApi
 
             if (isset($albumid)) {
                 $album->setAlbumId($albumid);
-                $album->setUrl("https://play.google.com/store/music/album?id=".$albumid."&gl=".$this->country."&hl=".$this->language);
+                $album->setUrl('https://play.google.com/store/music/album?id='.$albumid.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($image)) {
                 $album->setImage($image);
@@ -234,7 +234,7 @@ class PlayStoreApi
 
             if (isset($pname)) {
                 $app->setPackage($pname);
-                $app->setUrl("https://play.google.com/store/apps/details?id=".$pname."&gl=".$this->country."&hl=".$this->language);
+                $app->setUrl('https://play.google.com/store/apps/details?id='.$pname.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($icon)) {
                 $app->setIcon($icon);
@@ -296,7 +296,7 @@ class PlayStoreApi
 
             if (isset($artistid)) {
                 $artist->setArtistId($artistid);
-                $artist->setUrl("https://play.google.com/store/music/artist?id=".$artistid."&gl=".$this->country."&hl=".$this->language);
+                $artist->setUrl('https://play.google.com/store/music/artist?id='.$artistid.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($name)) {
                 $artist->setName($name);
@@ -360,7 +360,7 @@ class PlayStoreApi
 
             if (isset($bookid)) {
                 $book->setBookId($bookid);
-                $book->setUrl("https://play.google.com/store/books/details?id=".$bookid."&gl=".$this->country."&hl=".$this->language);
+                $book->setUrl('https://play.google.com/store/books/details?id='.$bookid.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($image)) {
                 $book->setImage($image);
@@ -426,7 +426,7 @@ class PlayStoreApi
 
             if (isset($deviceid)) {
                 $device->setDeviceId($deviceid);
-                $device->setUrl("https://store.google.com/product/".$deviceid);
+                $device->setUrl('https://store.google.com/product/'.$deviceid);
             }
             if (isset($image)) {
                 $device->setImage($image);
@@ -492,7 +492,7 @@ class PlayStoreApi
 
             if (isset($magazineid)) {
                 $magazine->setMagazineId($magazineid);
-                $magazine->setUrl("https://play.google.com/store/newsstand/details?id=".$magazineid."&gl=".$this->country."&hl=".$this->language);
+                $magazine->setUrl('https://play.google.com/store/newsstand/details?id='.$magazineid.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($image)) {
                 $magazine->setImage($image);
@@ -564,7 +564,7 @@ class PlayStoreApi
 
             if (isset($movieid)) {
                 $movie->setMovieId($movieid);
-                $movie->setUrl("https://play.google.com/store/movies/details?id=".$movieid."&gl=".$this->country."&hl=".$this->language);
+                $movie->setUrl('https://play.google.com/store/movies/details?id='.$movieid.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($image)) {
                 $movie->setImage($image);
@@ -633,7 +633,7 @@ class PlayStoreApi
 
             if (isset($newspaperid)) {
                 $newspaper->setNewspaperId($newspaperid);
-                $newspaper->setUrl("https://play.google.com/store/newsstand/news?id=".$newspaperid."&gl=".$this->country."&hl=".$this->language);
+                $newspaper->setUrl('https://play.google.com/store/newsstand/news?id='.$newspaperid.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($image)) {
                 $newspaper->setImage($image);
@@ -727,7 +727,7 @@ class PlayStoreApi
                 $song->setPrice($price);
             }
             if ((isset($albumid)) && (isset($songid))) {
-                $song->setUrl("https://play.google.com/store/music/album?id=".$albumid."&tid=song-".$songid."&gl=".$this->country."&hl=".$this->language);
+                $song->setUrl('https://play.google.com/store/music/album?id='.$albumid.'&tid=song-'.$songid.'&gl='.$this->country.'&hl='.$this->language);
             }
 
             $items[] = $song;
@@ -819,7 +819,7 @@ class PlayStoreApi
                 $episode->setPrice($price);
             }
             if ((isset($episodeid)) && (isset($seasonid)) && (isset($showid))) {
-                $episode->setUrl("https://play.google.com/store/tv/show?id=".$showid."&cdid=tvseason-".$seasonid."&gdid=tvepisode-".$episodeid."&gl=".$this->country."&hl=".$this->language);
+                $episode->setUrl('https://play.google.com/store/tv/show?id='.$showid.'&cdid=tvseason-'.$seasonid.'&gdid=tvepisode-'.$episodeid.'&gl='.$this->country.'&hl='.$this->language);
             }
 
             $items[] = $episode;
@@ -882,7 +882,7 @@ class PlayStoreApi
 
             if (isset($showid)) {
                 $show->setShowId($showid);
-                $show->setUrl("https://play.google.com/store/tv/show?id=".$showid."&gl=".$this->country."&hl=".$this->language);
+                $show->setUrl('https://play.google.com/store/tv/show?id='.$showid.'&gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($image)) {
                 $show->setImage($image);
