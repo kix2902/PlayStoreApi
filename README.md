@@ -51,7 +51,7 @@ Every search method will return a json string formatted like the following:
 }
 ```
 
-The structure of every type data are the following:
+The structure of every type data are the following _(all values are optional)_:
 
 ### Album
 

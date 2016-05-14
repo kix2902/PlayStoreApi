@@ -106,17 +106,23 @@ class Episode implements \JsonSerializable
         $this->price = $price;
     }
 
-    public function getUrl(){
+    public function getUrl()
+    {
         return $this->url;
     }
 
-    public function setUrl($url){
+    public function setUrl($url)
+    {
         $url = trim($url);
         $this->url = $url;
     }
 
     public function JsonSerialize()
     {
-        return get_object_vars($this);
+        $vars = get_object_vars($this);
+
+        return array_filter($vars, function ($value) {
+            return null !== $value;
+        });
     }
 }
