@@ -10,11 +10,9 @@ class Album implements \JsonSerializable
     private $price;
     private $url;
 
+    private $description;
     private $genre;
-    private $length;
     private $tracks;
-    private $released;
-    private $label;
     private $rating_value;
     private $rating_count;
 
@@ -97,8 +95,47 @@ class Album implements \JsonSerializable
 
     public function setUrl($url)
     {
-        $url = trim($url);
         $this->url = $url;
+    }
+
+    public function getDescription(){
+        return $this->description;
+    }
+
+    public function setDescription($description){
+        $this->description = $description;
+    }
+
+    public function getGenre(){
+        return $this->genre;
+    }
+
+    public function setGenre($genre){
+        $this->genre = $genre;
+    }
+
+    public function getTracks(){
+        return $this->tracks;
+    }
+
+    public function setTracks($tracks){
+        $this->tracks = $tracks;
+    }
+
+    public function getRatingValue(){
+        return $this->rating_value;
+    }
+
+    public function setRatingValue($rating_value){
+        $this->rating_value = $rating_value;
+    }
+
+    public function getRatingCount(){
+        return $this->rating_count;
+    }
+
+    public function setRatingCount($rating_count){
+        $this->rating_count = $rating_count;
     }
 
     public function JsonSerialize()

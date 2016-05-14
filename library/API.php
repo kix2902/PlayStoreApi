@@ -908,4 +908,89 @@ class PlayStoreApi
 
         return json_encode($arr);
     }
+
+    /**
+     * Get the details of an album in the Google Play Store.
+     *
+     * @param string $album_id The id of the album to get
+     *
+     * @return A json object with the details of the album requested
+     */
+    public function getAlbum($album_id)
+    {
+        $url = 'https://play.google.com/store/music/album?id='.$album_id.'&gl='.$this->country.'&hl='.$this->language;
+        $html = $this->curlExec($url);
+
+        $pos = stripos($html, "We're sorry, the requested URL was not found on this server.");
+        if ($pos !== false) {
+            $message['msg'] = 'No results found';
+
+            return json_encode($message);
+        }
+
+        $htmldom = new simple_html_dom();
+        $htmldom->load($html);
+
+        $image = substr($htmldom->find('.cover-image', 0)->src, 0, -5);
+        $title = $htmldom->find('.document-title', 0)->first_child()->plaintext;
+        $artist = $htmldom->find('a[class=document-subtitle primary]', 0)->plaintext;
+        $artisthref = $htmldom->find('a[class=document-subtitle primary]', 0)->href;
+        $artistid = substr($artisthref, strpos($artisthref, '?id=') + 4);
+
+        if ($htmldom->find('meta[itemprop=price]', 0) != null) {
+            $price = $htmldom->find('meta[itemprop=price]', 0)->content;
+        }
+
+        if ($htmldom->find('.description', 0) != null) {
+            if ($htmldom->find('.description', 0)->find('meta[itemprop=description]', 0) != null) {
+                $description = $htmldom->find('.description', 0)->find('meta[itemprop=description]', 0)->content;
+            }
+        }
+
+        $genre = trim($htmldom->find('a[class=document-subtitle category]', 0)->plaintext);
+        $tracks = count($htmldom->find('.track-list-row'));
+
+        $rating_value = floatval($htmldom->find('meta[itemprop=ratingValue]', 0)->content);
+        $rating_count = intval($htmldom->find('meta[itemprop=ratingCount]', 0)->content);
+
+        $album = new Album();
+        $album->setAlbumId($album_id);
+        $album->setUrl($url);
+
+        if (isset($image)) {
+            $album->setImage($image);
+        }
+        if (isset($title)) {
+            $album->setTitle($title);
+        }
+        if (isset($artist)) {
+            $album->setArtist($artist);
+        }
+        if (isset($artistid)) {
+            $album->setArtistId($artistid);
+        }
+        if (isset($price)) {
+            $album->setPrice($price);
+        }
+        if (isset($description)) {
+            $album->setDescription($description);
+        }
+        if (isset($genre)) {
+            $album->setGenre($genre);
+        }
+        if (isset($tracks)) {
+            $album->setTracks($tracks);
+        }
+        if (isset($rating_value)) {
+            $album->setRatingValue($rating_value);
+        }
+        if (isset($rating_count)) {
+            $album->setRatingCount($rating_count);
+        }
+
+        $htmldom->clear();
+        unset($htmldom);
+
+        return json_encode($album);
+    }
 }
