@@ -64,6 +64,11 @@ The structure of every type data are the following _(all values are optional)_:
   "artist_id"
   "price"
   "url"
+  "description"
+  "genre"
+  "tracks"
+  "rating_value"
+  "rating_count"
 }
 ```
 
