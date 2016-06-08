@@ -993,4 +993,123 @@ class PlayStoreApi
 
         return json_encode($album);
     }
+
+    /**
+     * Get the details of an app in the Google Play Store.
+     *
+     * @param string $package The package name of the app to get
+     *
+     * @return A json object with the details of the app requested
+     */
+    public function getApp($package)
+    {
+        $url = 'https://play.google.com/store/apps/details?id='.$package.'&gl='.$this->country.'&hl='.$this->language;
+        $html = $this->curlExec($url);
+
+        $pos = stripos($html, "We're sorry, the requested URL was not found on this server.");
+        if ($pos !== false) {
+            $message['msg'] = 'No results found';
+
+            return json_encode($message);
+        }
+
+        $htmldom = new simple_html_dom();
+        $htmldom->load($html);
+
+        $icon = substr($htmldom->find('.cover-image', 0)->src, 0, -5);
+        $name = $htmldom->find('.id-app-title', 0)->plaintext;
+        $developer = $htmldom->find('a[class=document-subtitle primary]', 0)->first_child()->plaintext;
+
+        if ($htmldom->find('meta[itemprop=price]', 0) != null) {
+            $price = $htmldom->find('meta[itemprop=price]', 0)->content;
+        }
+
+        if ($htmldom->find('.description', 0) != null) {
+            if ($htmldom->find('.description', 0)->find('div[itemprop=description]', 0) != null) {
+                $description = $htmldom->find('.description', 0)->find('div[itemprop=description]', 0)->first_child()->plaintext;
+            }
+        }
+
+        $category = trim($htmldom->find('a[class=document-subtitle category]', 0)->plaintext);
+
+        if ($htmldom->find('meta[itemprop=ratingValue]', 0)!= null) {
+            $rating_value = floatval($htmldom->find('meta[itemprop=ratingValue]', 0)->content);
+        }
+        if ($htmldom->find('meta[itemprop=ratingCount]', 0)!= null) {
+            $rating_count = intval($htmldom->find('meta[itemprop=ratingCount]', 0)->content);
+        }
+
+        if ($htmldom->find('div[itemprop=datePublished]', 0)!= null) {
+            $date_updated = $htmldom->find('div[itemprop=datePublished]', 0)->plaintext;
+        }
+        if ($htmldom->find('div[itemprop=fileSize]', 0)!= null) {
+            $file_size = $htmldom->find('div[itemprop=fileSize]', 0)->plaintext;
+        }
+        if ($htmldom->find('div[itemprop=numDownloads]', 0)!= null) {
+            $num_downloads = $htmldom->find('div[itemprop=numDownloads]', 0)->plaintext;
+        }
+        if ($htmldom->find('div[itemprop=softwareVersion]', 0)!= null) {
+            $version = $htmldom->find('div[itemprop=softwareVersion]', 0)->plaintext;
+        }
+        if ($htmldom->find('div[itemprop=operatingSystems]', 0)!= null) {
+            $req_android = $htmldom->find('div[itemprop=operatingSystems]', 0)->plaintext;
+        }
+        if ($htmldom->find('div[itemprop=contentRating]', 0)!= null) {
+            $content_rating = $htmldom->find('div[itemprop=contentRating]', 0)->plaintext;
+        }
+
+
+        $app = new App();
+        $app->setPackage($package);
+        $app->setUrl($url);
+
+        if (isset($icon)) {
+            $app->setIcon($icon);
+        }
+        if (isset($name)) {
+            $app->setName($name);
+        }
+        if (isset($developer)) {
+            $app->setDeveloper($developer);
+        }
+        if (isset($price)) {
+            $app->setPrice($price);
+        }
+        if (isset($description)) {
+            $app->setDescription($description);
+        }
+        if (isset($category)) {
+            $app->setCategory($category);
+        }
+        if (isset($rating_value)) {
+            $app->setRatingValue($rating_value);
+        }
+        if (isset($rating_count)) {
+            $app->setRatingCount($rating_count);
+        }
+        if (isset($date_updated)) {
+            $app->setDateUpdated($date_updated);
+        }
+        if (isset($file_size)) {
+            $app->setFileSize($file_size);
+        }
+        if (isset($num_downloads)) {
+            $app->setNumDownloads($num_downloads);
+        }
+        if (isset($version)) {
+            $app->setVersion($version);
+        }
+        if (isset($req_android)) {
+            $app->setRequiredAndroid($req_android);
+        }
+        if (isset($content_rating)) {
+            $app->setContentRating($content_rating);
+        }
+
+
+        $htmldom->clear();
+        unset($htmldom);
+
+        return json_encode($app);
+    }
 }
