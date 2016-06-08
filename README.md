@@ -82,6 +82,16 @@ The structure of every type data are the following _(all values are optional)_:
   "developer"
   "price"
   "url"
+  "description"
+  "category"
+  "rating_value"
+  "rating_count"
+  "file_size"
+  "date_updated"
+  "num_downloads"
+  "version"
+  "required_android"
+  "content_rating"
 }
 ```
 
