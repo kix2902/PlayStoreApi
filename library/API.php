@@ -58,15 +58,15 @@ class PlayStoreApi
 
     private function extractPageToken($html)
     {
-        $pagetoken = '';
+        $indexNbp = strpos($html, 'var nbp');
+        $indexSc = strpos($html, 'var sc');
+        $varnbp = substr($html, $indexNbp,$indexSc-$indexNbp);
 
-        $indextoken = strrpos($html, '\\42G') + 3;
-        if ($indextoken > 3) {
-            $nextindextoken = strpos($html, '\\42', $indextoken + 1);
-            if (($nextindextoken - $indextoken) > 5) {
-                $pagetoken = substr($html, $indextoken, $nextindextoken - $indextoken);
-            }
-        }
+        $indexX22 = strpos($varnbp, "\\x22,\\x22");
+        $pagetoken = substr($varnbp, $indexX22+9);
+
+        $indexX22 = strpos($pagetoken, "\\x22,\\x22");
+        $pagetoken = substr($pagetoken, 0, $indexX22);
 
         return $pagetoken;
     }
