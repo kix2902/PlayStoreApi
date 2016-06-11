@@ -103,6 +103,7 @@ The structure of every type data are the following _(all values are optional)_:
   "image"
   "name"
   "url"
+  "about"
 }
 ```
 
