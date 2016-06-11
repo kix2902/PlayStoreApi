@@ -7,6 +7,8 @@ class Artist implements \JsonSerializable
     private $name;
     private $url;
 
+    private $about;
+
     public function getArtistId()
     {
         return $this->artist_id;
@@ -52,6 +54,17 @@ class Artist implements \JsonSerializable
     {
         $url = trim($url);
         $this->url = $url;
+    }
+
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    public function setAbout($about)
+    {
+        $about = trim($about);
+        $this->about = $about;
     }
 
     public function JsonSerialize()
