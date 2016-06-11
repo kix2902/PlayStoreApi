@@ -912,7 +912,7 @@ class PlayStoreApi
     /**
      * Get the details of an album in the Google Play Store.
      *
-     * @param string $album_id The id of the album to get
+     * @param string $album_id The id of the album to retrieve
      *
      * @return A json object with the details of the album requested
      */
@@ -997,7 +997,7 @@ class PlayStoreApi
     /**
      * Get the details of an app in the Google Play Store.
      *
-     * @param string $package The package name of the app to get
+     * @param string $package The package name of the app to retrieve
      *
      * @return A json object with the details of the app requested
      */
@@ -1111,5 +1111,56 @@ class PlayStoreApi
         unset($htmldom);
 
         return json_encode($app);
+    }
+
+    /**
+     * Get the details of an app in the Google Play Store.
+     *
+     * @param string $artist_id The id of the artist to retrieve
+     *
+     * @return A json object with the details of the artist requested
+     */
+    public function getArtist($artist_id)
+    {
+        $url = 'https://play.google.com/store/music/artist?id='.$artist_id.'&gl='.$this->country.'&hl='.$this->language;
+        $html = $this->curlExec($url);
+
+        $pos = stripos($html, "We're sorry, the requested URL was not found on this server.");
+        if ($pos !== false) {
+            $message['msg'] = 'No results found';
+
+            return json_encode($message);
+        }
+
+        $htmldom = new simple_html_dom();
+        $htmldom->load($html);
+
+        $image = substr($htmldom->find('.cover-image', 0)->src, 0, -5);
+        $name = $htmldom->find('.document-title', 0)->first_child()->plaintext;
+
+        if ($htmldom->find('meta[itemprop=description]', 0) != null) {
+            $about = $htmldom->find('meta[itemprop=description]', 0)->content;
+        }
+
+
+        $artist = new Artist();
+        $artist->setArtistId($artist_id);
+        $artist->setUrl($url);
+
+        if (isset($image)) {
+            $artist->setImage($image);
+        }
+        if (isset($name)) {
+            $artist->setName($name);
+        }
+        if (isset($about)) {
+            $artist->setAbout($about);
+        }
+
+
+        $htmldom->clear();
+        unset($htmldom);
+
+        return json_encode($artist);
     }
 }
