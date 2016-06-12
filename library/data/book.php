@@ -9,6 +9,13 @@ class Book implements \JsonSerializable
     private $price;
     private $url;
 
+    private $description;
+    private $pages;
+    private $languages;
+    private $isbn;
+    private $rating_value;
+    private $rating_count;
+
     public function getBookId()
     {
         return $this->book_id;
@@ -79,6 +86,56 @@ class Book implements \JsonSerializable
     {
         $url = trim($url);
         $this->url = $url;
+    }
+
+    public function getDescription(){
+        return $this->description;
+    }
+
+    public function setDescription($description){
+        $description = trim($description);
+        $this->description = $description;
+    }
+
+    public function getPages(){
+        return $this->pages;
+    }
+
+    public function setPages($pages){
+        $this->pages = $pages;
+    }
+
+    public function getLanguages(){
+        return $this->languages;
+    }
+
+    public function setLanguages($languages){
+        $this->languages = $languages;
+    }
+
+    public function getIsbn(){
+        return $this->isbn;
+    }
+
+    public function setIsbn($isbn){
+        $isbn = trim($isbn);
+        $this->isbn = $isbn;
+    }
+
+    public function getRatingValue(){
+        return $this->rating_value;
+    }
+
+    public function setRatingValue($rating_value){
+        $this->rating_value = $rating_value;
+    }
+
+    public function getRatingCount(){
+        return $this->rating_count;
+    }
+
+    public function setRatingCount($rating_count){
+        $this->rating_count = $rating_count;
     }
 
     public function JsonSerialize()
