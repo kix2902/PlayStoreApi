@@ -117,6 +117,12 @@ The structure of every type data are the following _(all values are optional)_:
   "author"
   "price"
   "url"
+  "description"
+  "pages"
+  "languages"
+  "isbn"
+  "rating_value"
+  "rating_count"
 }
 ```
 
