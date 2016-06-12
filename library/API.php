@@ -950,8 +950,13 @@ class PlayStoreApi
         $genre = trim($htmldom->find('a[class=document-subtitle category]', 0)->plaintext);
         $tracks = count($htmldom->find('.track-list-row'));
 
-        $rating_value = floatval($htmldom->find('meta[itemprop=ratingValue]', 0)->content);
-        $rating_count = intval($htmldom->find('meta[itemprop=ratingCount]', 0)->content);
+        if ($htmldom->find('meta[itemprop=ratingValue]', 0) != null){
+            $rating_value = floatval($htmldom->find('meta[itemprop=ratingValue]', 0)->content);
+        }
+
+        if ($htmldom->find('meta[itemprop=ratingCount]', 0) != null){
+            $rating_count = intval($htmldom->find('meta[itemprop=ratingCount]', 0)->content);
+        }
 
         $album = new Album();
         $album->setAlbumId($album_id);
@@ -1114,7 +1119,7 @@ class PlayStoreApi
     }
 
     /**
-     * Get the details of an app in the Google Play Store.
+     * Get the details of an artist in the Google Play Store.
      *
      * @param string $artist_id The id of the artist to retrieve
      *
@@ -1162,5 +1167,94 @@ class PlayStoreApi
         unset($htmldom);
 
         return json_encode($artist);
+    }
+
+    /**
+     * Get the details of a book in the Google Play Store.
+     *
+     * @param string $book_id The id of the book to retrieve
+     *
+     * @return A json object with the details of the book requested
+     */
+    public function getBook($book_id)
+    {
+        $url = 'https://play.google.com/store/books/details?id='.$book_id.'&gl='.$this->country.'&hl='.$this->language;
+        $html = $this->curlExec($url);
+
+        $pos = stripos($html, "We're sorry, the requested URL was not found on this server.");
+        if ($pos !== false) {
+            $message['msg'] = 'No results found';
+
+            return json_encode($message);
+        }
+
+        $htmldom = new simple_html_dom();
+        $htmldom->load($html);
+
+        $image = substr($htmldom->find('.cover-image', 0)->src, 0, -10);
+        $title = $htmldom->find('.document-title', 0)->first_child()->plaintext;
+        $author = $htmldom->find('.book-author-last', 0)->plaintext;
+
+        if ($htmldom->find('meta[itemprop=price]', 0) != null) {
+            $price = $htmldom->find('meta[itemprop=price]', 0)->content;
+        }
+
+        if ($htmldom->find('meta[itemprop=description]', 0) != null) {
+            $description = $htmldom->find('meta[itemprop=description]', 0)->content;
+        }
+
+        $pages = $htmldom->find('span[itemprop=numberOfPages]', 0)->plaintext;
+        $language = $htmldom->find('div[itemprop=inLanguage]', 0)->plaintext;
+        $isbn = $htmldom->find('div[itemprop=isbn]', 0)->plaintext;
+
+        if ($htmldom->find('meta[itemprop=ratingValue]', 0) != null){
+            $rating_value = floatval($htmldom->find('meta[itemprop=ratingValue]', 0)->content);
+        }
+
+        if ($htmldom->find('meta[itemprop=ratingCount]', 0) != null){
+            $rating_count = intval($htmldom->find('meta[itemprop=ratingCount]', 0)->content);
+        }
+
+
+        $book = new Book();
+        $book->setBookId($book_id);
+        $book->setUrl($url);
+
+        if (isset($image)) {
+            $book->setImage($image);
+        }
+        if (isset($title)) {
+            $book->setTitle($title);
+        }
+        if (isset($author)) {
+            $book->setAuthor($author);
+        }
+        if (isset($price)) {
+            $book->setPrice($price);
+        }
+        if (isset($description)) {
+            $book->setDescription($description);
+        }
+        if (isset($pages)) {
+            $book->setPages($pages);
+        }
+        if (isset($language)) {
+            $book->setLanguages($language);
+        }
+        if (isset($isbn)) {
+            $book->setIsbn($isbn);
+        }
+        if (isset($rating_value)) {
+            $book->setRatingValue($rating_value);
+        }
+        if (isset($rating_count)) {
+            $book->setRatingCount($rating_count);
+        }
+
+
+        $htmldom->clear();
+        unset($htmldom);
+
+        return json_encode($book);
     }
 }
