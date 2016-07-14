@@ -426,7 +426,7 @@ class PlayStoreApi
 
             if (isset($deviceid)) {
                 $device->setDeviceId($deviceid);
-                $device->setUrl('https://store.google.com/product/'.$deviceid);
+                $device->setUrl('https://store.google.com/product/'.$deviceid.'?gl='.$this->country.'&hl='.$this->language);
             }
             if (isset($image)) {
                 $device->setImage($image);
